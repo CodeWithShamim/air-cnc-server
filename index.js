@@ -17,10 +17,18 @@ async function run() {
     try {
         await client.connect();
         const experienceCollection = client.db("air_cnc").collection("experiences");
+        const homeCollection = client.db("air_cnc").collection("homes");
 
+        // get experiences 
         app.get("/experience", async(req, res) => {
             const experiences = await experienceCollection.find({}).toArray();
             res.send(experiences);
+        })
+
+        // get homes 
+        app.get("/home", async(req, res) => {
+            const homes = await homeCollection.find({}).toArray();
+            res.send(homes);
         })
 
 
